@@ -11,6 +11,6 @@ const UserSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const UserModel = new mongoose.model(dbCollection, UserSchema)
+const ToDoListModel = new mongoose.model(dbCollection, UserSchema)
 
-export default UserModel
+export default ToDoListModel

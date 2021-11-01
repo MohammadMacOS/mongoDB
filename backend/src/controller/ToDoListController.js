@@ -1,11 +1,11 @@
-import UserModel from "../models/UserModel.js";
+import ToDoListModel from "../models/ToDoListModel.js";
 import Logger from "../utils/Logger.js";
 import {response} from "express";
 
 const createUser = async (req, res) => {
     Logger.http(req.body)
 
-    const user = new UserModel({
+    const user = new ToDoListModel({
         username: req.body.username,
         password: req.body.password,
     })
@@ -24,7 +24,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const response = await UserModel.find()
+        const response = await ToDoListModel.find()
         Logger.debug(response)
         res.status(200).send(response)
     } catch (error) {
@@ -36,7 +36,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     try {
         Logger.debug( `req.params.userId: ${req.params.userId}`)
-        const response = await UserModel.findById(req.params.userId)
+        const response = await ToDoListModel.findById(req.params.userId)
         Logger.debug(response)
         res.status(200).send(response)
     } catch (error) {
@@ -50,7 +50,7 @@ const getUserById = async (req, res) => {
 const getUserByUsername = async (req, res) => {
     try {
         Logger.debug(`req.query.username: ${req.query.username}`)
-        const response = await UserModel.find({username: req.query.username})
+        const response = await ToDoListModel.find({username: req.query.username})
         Logger.debug(response)
         response.length !== 0
             ? res.status(200).send(response)
@@ -71,7 +71,7 @@ const updateUserById = async (req, res) => {
             res.status(400).send({message: `Can't update with empty values! `})
         }
 
-        const response = await UserModel.findByIdAndUpdate(req.params.userId,{
+        const response = await ToDoListModel.findByIdAndUpdate(req.params.userId,{
             username: req.body.username,
             password: req.body.password,
         }, {new: true})
@@ -89,7 +89,7 @@ const updateUserById = async (req, res) => {
 const deleteUserById = async (req, res) => {
     try {
         Logger.http(req.params.userId)
-        const response = await UserModel.findByIdAndDelete(req.params.userId)
+        const response = await ToDoListModel.findByIdAndDelete(req.params.userId)
         Logger.debug(response)
         res.status(200).send({
             message: `Successfully deleted users with username '${response.username}' and ID: ${req.params.userId}`

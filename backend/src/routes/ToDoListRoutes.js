@@ -1,4 +1,4 @@
-import UserController from "../controller/UserController.js";
+import UserController from "../controller/ToDoListController.js";
 
 const routes = (app) => {
     const userUrl = '/users'

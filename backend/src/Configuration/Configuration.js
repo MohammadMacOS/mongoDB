@@ -36,7 +36,7 @@ const connectToDatabase = async () => {
         Logger.error('Error connecting to the Database'.toUpperCase(), error)
         process.exit()
     }
-}
+};
 
 export default {
     connectToPort,
