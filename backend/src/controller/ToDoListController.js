@@ -5,14 +5,15 @@ import {response} from "express";
 const createUser = async (req, res) => {
     Logger.http(req.body)
 
-    const user = new ToDoListModel({
-        username: req.body.username,
-        password: req.body.password,
+    const ToDoList = new ToDoListModel({
+        ToDoUser: req.body.ToDoUser,
+        status: req.body.status,
+        assignedTo: req.body.assignedTo,
     })
-    Logger.debug(user)
+    Logger.debug(ToDoList)
 
     try {
-        const response = await user.save()
+        const response = await ToDoList.save()
         Logger.debug(response)
         res.status(201).send(response)
     } catch (error) {
@@ -22,7 +23,7 @@ const createUser = async (req, res) => {
 
 };
 
-const getAllUsers = async (req, res) => {
+const getAllTODOListUsers = async (req, res) => {
     try {
         const response = await ToDoListModel.find()
         Logger.debug(response)
@@ -33,21 +34,22 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-const getUserById = async (req, res) => {
+const getTODOListUserById = async (req, res) => {
+    const id = req.params.id
     try {
-        Logger.debug( `req.params.userId: ${req.params.userId}`)
-        const response = await ToDoListModel.findById(req.params.userId)
+        Logger.debug( `req.params.userId: ${req.params.Id}`)
+        const response = await ToDoListModel.findById(req.params.Id)
         Logger.debug(response)
         res.status(200).send(response)
     } catch (error) {
         res.status(500).send({
-            message: `Error occurred while trying to retrive user with ID ${req.params.userId}`,
+            message: `Error occurred while trying to retrieve user with ID ${req.params.userId}`,
             error: error.message})
 
     }
 }
 
-const getUserByUsername = async (req, res) => {
+const getTODOListUserByUsername = async (req, res) => {
     try {
         Logger.debug(`req.query.username: ${req.query.username}`)
         const response = await ToDoListModel.find({username: req.query.username})
@@ -57,12 +59,12 @@ const getUserByUsername = async (req, res) => {
             : res.status(404).send({message: `Couldn't find user with username '${req.query.username}'`})
     } catch (error) {
         res.status(500).send({
-            message: `Error occurred while trying to retrive user with username ${req.params.username}`,
+            message: `Error occurred while trying to retrieve user with username ${req.params.username}`,
             error: error.message})
     }
 }
 
-const updateUserById = async (req, res) => {
+const updateTODOListUserById = async (req, res) => {
     try {
         Logger.http(`req.params.userId: ${req.params.userId}`)
         Logger.http(`req.body: ${req.body}`)
@@ -86,7 +88,7 @@ const updateUserById = async (req, res) => {
     }
 }
 
-const deleteUserById = async (req, res) => {
+const deleteTODOListUserById = async (req, res) => {
     try {
         Logger.http(req.params.userId)
         const response = await ToDoListModel.findByIdAndDelete(req.params.userId)
@@ -103,10 +105,10 @@ const deleteUserById = async (req, res) => {
 
 export default {
     createUser,
-    getAllUsers,
-    getUserById,
-    getUserByUsername,
-    updateUserById,
-    deleteUserById,
+    getAllTODOListUsers,
+    getTODOListUserById,
+   getTODOListUserByUsername,
+    updateTODOListUserById,
+    deleteTODOListUserById,
 
 }
