@@ -9,7 +9,7 @@ function App() {
   const [toDo, setToDo] = useState()
   const [status, setStatus] = useState() // all user
   const [assignedTo, setAssignedTo] = useState() // one user
-  // Updatera TodoList
+  // Uppdatera TodoList
   const [toDoId, setToDoId ] = useState() // id - setID
   const [updateToDo, setUpdateToDo ] = useState() // name
   const [updateStatusToDo, setUpdateStatusTDo] = useState() // age
@@ -52,7 +52,7 @@ function App() {
   }
 
 
-// Hämta todo user by Id
+// Hämta Todo user by Id
   function getToDoUserById(listId) {
     http.get(`/toDoLists/${ listId }`)
         .then(function (response) {

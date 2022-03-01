@@ -1,6 +1,5 @@
 import ToDoListModel from "../models/ToDoListModel.js";
 import Logger from "../utils/Logger.js";
-import {response} from "express";
 
 const createUser = async (req, res) => {
     Logger.http(req.body)

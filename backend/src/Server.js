@@ -2,7 +2,6 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import helmet from "helmet";
-// import morgan from "morgan";
 import MorganMiddleware from "./middleWares/MorganMiddleware.js";
 import Middlewares from "./middleWares/Middlewares.js"
 import Configuration from "./Configuration/Configuration.js"

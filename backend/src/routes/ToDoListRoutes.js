@@ -1,16 +1,16 @@
-import UserController from "../controller/ToDoListController.js";
+import ToDoListController from "../controller/ToDoListController.js";
 
 const routes = (app) => {
-    const userUrl = '/users'
+    const userUrl = '/toDoLists'
     const userUrlById = `${userUrl}/:userId`
-    const searchUsers = '/searchUsers'
+    const searchUsers = '/toDoLists'
 
-    app.post(userUrl, UserController.createUser)
-    app.get(userUrl, UserController.getAllUsers)
-    app.get(userUrlById, UserController.getUserById)
-    app.get(searchUsers, UserController.getUserByUsername)
-    app.put(userUrlById, UserController.updateUserById)
-    app.delete(userUrlById, UserController.deleteUserById)
+    app.post(userUrl, ToDoListController.createUser)
+    app.get(userUrl, ToDoListController.getAllTODOListUsers)
+    app.get(userUrlById, ToDoListController.getTODOListUserById)
+    app.get(searchUsers, ToDoListController.getTODOListUserByUsername)
+    app.put(userUrlById, ToDoListController.updateTODOListUserById)
+    app.delete(userUrlById, ToDoListController. deleteTODOListUserById)
 };
 
 export default {

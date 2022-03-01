@@ -1,6 +1,5 @@
 import Axios from 'axios'
 
-
 const hostUrl = "http://localhost"
 const port = 3001
 
